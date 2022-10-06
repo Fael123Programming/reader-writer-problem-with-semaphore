@@ -13,12 +13,11 @@ public class Writer extends Process {
     @Override
     public void performAction(Buffer b) {
         String data = getName() + "(" + i + ")";
-        if (b.push(data)) {
-            if (i == 10) {
-                i = 0;
-            } else {
-                i++;
-            }
+        b.push(data);
+        if (i == 10) {
+            i = 0;
+        } else {
+            i++;
         }
     }
 }

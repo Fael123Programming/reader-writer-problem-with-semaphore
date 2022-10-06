@@ -1,5 +1,7 @@
 package models.buffer;
 
+import java.util.EmptyStackException;
+
 public class Buffer {
     private final String[] data;
 
@@ -19,22 +21,20 @@ public class Buffer {
 
     public String[] getData() { return data; }
 
-    public boolean push(String data) {
+    public void push(String data) {
         if (full == this.data.length) {
-            return false; // Buffer is full of elements.
+            throw new StackOverflowError(); // Buffer is full of elements.
         }
         this.data[full++] = data;
         this.cache = data;
-        return true;
     }
 
-    public boolean pop() {
+    public void pop() {
         if (full == 0) {
-            return false; // Buffer is out of elements.
+            throw new EmptyStackException(); // Buffer is out of elements.
         }
         cache = data[--full];
         data[full] = null;
-        return true;
     }
 
     public String view() {
